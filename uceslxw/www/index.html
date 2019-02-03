@@ -139,8 +139,16 @@
                                                        role="presentation">home</i>Home</a>
             <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
                                                        role="presentation">inbox</i>Inbox</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
-                                                       role="presentation">delete</i>Trash</a>
+
+            <a class="mdl-navigation__link" href="" onclick='addPointLinePoly();return false;'><i
+                    class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Add
+                PointLinePoly</a>
+
+            <a class="mdl-navigation__link" href="" onclick='loadEarthquakeData();return false;'><i
+                    class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Get
+                Earthquakes</a>
+
+
             <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
                                                        role="presentation">report</i>Spam</a>
             <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
@@ -163,7 +171,7 @@
     <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
             <div class="demo-separator mdl-cell--1-col"></div>
-            <div id="ucllogo" name="ucllogo"> div goes here</div>
+            <div id="ucllogo" name="ucllogo"></div>
         </div>
     </main>
 
@@ -171,9 +179,6 @@
     <main class="mdl-layout__content mdl-color--grey-100">
         <div id="mapid" style="width: 600px; height: 400px;"></div>
     </main>
-
-    <!-- a button to load the data  -->
-    <button id="addPointLinePoly" name="addPointLinePoly" onclick="addPointLinePoly()">Click here to add Point Line Poly</button>
 
 </div>
 
