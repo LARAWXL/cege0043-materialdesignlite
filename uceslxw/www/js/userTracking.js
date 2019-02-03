@@ -9,6 +9,7 @@ function trackLocation() {
 function showPosition(position) {
     L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
     mymap.setView([position.coords.latitude, position.coords.longitude], 11);
+    getDistance()
 }
 
 function getDistance() {
@@ -16,8 +17,6 @@ function getDistance() {
     // getDistanceFromPoint is the function called
     // once the distance has been found
     navigator.geolocation.getCurrentPosition(getDistanceFromPoint)
-
-    //WHY NOT getDistanceFromPoint(navigator.geolocation.getCurrentPosition);
 }
 
 function getDistanceFromPoint(position) {
@@ -27,6 +26,10 @@ function getDistanceFromPoint(position) {
     var lng = -0.13818;
     // return the distance in kilometers
     var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat, lng, 'K');
+    // check whether the distance is within 100m, and pop up an alert message
+    if (distance < 0.1) {
+        alert("You are in UCL")
+    }
     document.getElementById('showDistance').innerHTML = "Distance: " + distance;
 }
 
