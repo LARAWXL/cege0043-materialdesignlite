@@ -12,11 +12,12 @@ function showPosition(position) {
     getDistance()
 }
 
+// get distance from multiple earthquakes
 function getDistance() {
-    alert('getting distance');
+    //alert('getting distance');
     // getDistanceFromPoint is the function called
     // once the distance has been found
-    navigator.geolocation.getCurrentPosition(getDistanceFromPoint)
+    navigator.geolocation.getCurrentPosition(getDistanceFromMultiplePoints)
 }
 
 function getDistanceFromPoint(position) {
@@ -58,4 +59,22 @@ function calculateDistance(lat1, lon1, lat2, lon2, unit) {
         dist = dist * 0.8684;
     }
     return dist;
+}
+
+// every time the user location is changed/tracked –
+// check the distance of the user from each Earthquake in the data
+// and pop up an alert showing the distance to the nearest earthquake
+function getDistanceFromMultiplePoints(position) {
+    var minDistance = 100000000000;
+    var closestQuake = "";
+    for (var i = 0; i < earthquakes.features.length; i++) {
+        var obj = earthquakes.features[i];
+        var distance = calculateDistance(position.coords.latitude,
+            position.coords.longitude, obj.geometry.coordinates[0], obj.geometry.coordinates[1], 'K');
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestQuake = obj.properties.place;
+        }
+    }
+    alert("Earthquake: " + closestQuake + " is distance " + minDistance + "away");
 }
