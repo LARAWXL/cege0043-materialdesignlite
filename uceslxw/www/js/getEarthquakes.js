@@ -17,15 +17,23 @@ function loadEarthquakeData() {
     // call the getEarthquakes code
     // keep the alert message so that we know something is happening
     alert("Loading Earthquakes");
-    getEarthquakes();
+    getEarthquakes(1);
 }
 
 
 // get the Earthquakes data using an XMLHttpRequest
-function getEarthquakes() {
+// depending on situations,
+// 1: the function only load the earthquake data
+// 2: the function load and recenter the earthquake layer
+function getEarthquakes(situation) {
     client = new XMLHttpRequest();
     client.open('GET', 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson');
-    client.onreadystatechange = earthquakeResponse;
+    if (situation == 1) {
+        client.onreadystatechange = earthquakeResponse_auto;
+    }
+    if (situation == 2) {
+        client.onreadystatechange = earthquakeResponse_menu;
+    }
     // note don't use earthquakeResponse() with brackets as that doesn't work
     client.send();
 }
@@ -33,7 +41,18 @@ function getEarthquakes() {
 
 // wait for the response from the data server,
 // and process the response once it is received
-function earthquakeResponse() {
+function earthquakeResponse_auto() {
+    // this function listens out for the server to say that
+    // the data is ready - i.e. has state 4
+    if (client.readyState == 4) {
+        // once the data is ready, process the data
+        var earthquakedata = client.responseText;
+        storeEarthquakedata(earthquakedata);
+    }
+}
+
+
+function earthquakeResponse_menu() {
     // this function listens out for the server to say that
     // the data is ready - i.e. has state 4
     if (client.readyState == 4) {
@@ -43,7 +62,18 @@ function earthquakeResponse() {
     }
 }
 
-// convert the received data - which is text - to JSON format and add it to the map
+// convert the received data - which is text - to JSON format
+// and pass the data to a global variable
+function storeEarthquakedata(earthquakedata) {
+    // convert the text to JSON
+    var earthquakejson = JSON.parse(earthquakedata);
+    // use a global variable to hold the Earthquakes data
+    earthquakes = earthquakejson;
+}
+
+// convert the received data - which is text - to JSON format
+// and add it to the map
+// also pass the data to a global variable
 function loadEarthquakelayer(earthquakedata) {
     // convert the text to JSON
     var earthquakejson = JSON.parse(earthquakedata);
