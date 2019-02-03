@@ -3,6 +3,10 @@
 // all the functions can use the same variable
 var client;
 
+// a global variable to hold earthquake data
+var earthquakes;
+
+
 // and a variable that will hold the layer itself
 // we need to do this outside the function so that we
 // can use it to remove the layer later on
@@ -43,6 +47,7 @@ function earthquakeResponse() {
 function loadEarthquakelayer(earthquakedata) {
     // convert the text to JSON
     var earthquakejson = JSON.parse(earthquakedata);
+    earthquakes = earthquakejson;
     // add the JSON layer onto the map - it will appear using the default icons
     earthquakelayer = L.geoJson(earthquakejson).addTo(mymap);
 
