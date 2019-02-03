@@ -21,7 +21,7 @@ function addPointLinePoly() {
     }).addTo(mymap).bindPopup("I am a polygon.");
 
     // change the map zoom so that all the data is shown
-    mymap.setView([51.505, -0.09], 13);
+    mymap.setView([51.505, -0.09], 11);
 }
 
 
