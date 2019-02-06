@@ -27,22 +27,24 @@ function addPointLinePoly() {
 
 // Add the getDistance, getDistanceFromPoint and calculateDistance functions
 function getDistance() {
-    alert('getting distance');
+    //alert('getting distance');
     // getDistanceFromPoint is the function called
     // once the distance has been found
     navigator.geolocation.getCurrentPosition(getDistanceFromPoint)
-
-    //WHY NOT getDistanceFromPoint(navigator.geolocation.getCurrentPosition);
 }
 
 function getDistanceFromPoint(position) {
     // find the coordinates of a point using this website:
     // these are the coordinates for Warren Street
-    var lat = 51.524616;
-    var lng = -0.13818;
+    var lat = 51.524047;
+    var lng = -0.134325;
     // return the distance in kilometers
     var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat, lng, 'K');
-    document.getElementById('showDistance').innerHTML = "Distance: " + distance;
+    // put an IF statement to check whether the distance is within 100m
+    // and pop up an alert message.
+    if (distance < 0.1) {
+        alert("You are within 100m of Chadwick!!")
+    }
 }
 
 // code adapted from
