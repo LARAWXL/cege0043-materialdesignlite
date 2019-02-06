@@ -74,3 +74,20 @@ function calculateDistance(lat1, lon1, lat2, lon2, unit) {
     return dist;
 }
 
+// every time the user location is changed/tracked –
+// check the distance of the user from each Earthquake in the data
+// and pop up an alert
+function getDistanceFromMultiplePoints(position) {
+    var minDistance = 100000000000;
+    var closestQuake = "";
+    for (var i = 0; i < earthquakes.features.length; i++) {
+        var obj = earthquakes.features[i];
+        var distance = calculateDistance(position.coords.latitude,
+            position.coords.longitude, obj.geometry.coordinates[0], obj.geometry.coordinates[1], 'K');
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestQuake = obj.properties.place;
+        }
+    }
+    alert("Earthquake: " + closestQuake + " is distance " + minDistance + "away");
+}
