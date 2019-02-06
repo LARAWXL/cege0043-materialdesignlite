@@ -33,17 +33,23 @@ function getDistance() {
     navigator.geolocation.getCurrentPosition(getDistanceFromMultiplePoints)
 }
 
+// Add functionality to allow the user to click on a menu option that gives them the
+// distance to a fixed point (e.g. Warren Street Station)
+// also adding an Proximity Alert if user is close to this location
 function getDistanceFromPoint(position) {
     // find the coordinates of a point using this website:
     // these are the coordinates for Warren Street
-    var lat = 51.524047;
-    var lng = -0.134325;
+    var lat = 51.5246;
+    var lng = -0.1382;
     // return the distance in kilometers
     var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat, lng, 'K');
     // put an IF statement to check whether the distance is within 100m
     // and pop up an alert message.
     if (distance < 0.1) {
-        alert("You are within 100m of Chadwick!!")
+        alert("You are within 100m of Warren Street Station!!")
+    }
+    else {
+        alert("You are at " + distance + " km away from Warren Street Station!! ")
     }
 }
 
