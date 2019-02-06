@@ -144,13 +144,21 @@
                     class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Add
                 PointLinePoly</a>
 
-            <a class="mdl-navigation__link" href="" onclick='loadEarthquakeData();return false;'><i
+            <a class="mdl-navigation__link" href="" onclick='getData("earthquake");return false;'><i
                     class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Get
                 Earthquakes</a>
 
-            <a class="mdl-navigation__link" href="" onclick='removeEarthquakeData();return false;'><i
+            <a class="mdl-navigation__link" href="" onclick='removeData("earthquake");return false;'><i
                     class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Remove
                 Earthquakes</a>
+
+            <a class="mdl-navigation__link" href="" onclick='getData("busstop");return false;'><i
+                    class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Get
+                Bus Stops</a>
+
+            <a class="mdl-navigation__link" href="" onclick='removeData("busstop");return false;'><i
+                    class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Remove
+                Bus Stops</a>
 
             <a class="mdl-navigation__link" href="" onclick='trackLocation();return false;'><i
                     class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>User Tracking</a>
@@ -191,11 +199,10 @@
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script src="js/rhMenu.js"></script>
 <script src="js/leaflet.js"></script>
-<script src="js/getEarthquakes.js"></script>
 <script src="js/leafletFunctions.js"></script>
-<script src="js/getEarthquakes.js"></script>
 <script src="js/userTracking.js"></script>
 <script src="js/startup.js"></script>
+<script src="js/bus_and_earthquake.js"></script>
 <!-- automatically load the point/line/circle and
 start tracking the user location-->
 <script>startup(); </script>
